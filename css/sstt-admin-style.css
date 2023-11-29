@@ -1,0 +1,70 @@
+div{
+    margin-top: 5px;
+}
+
+/* Main form container */
+.sstt-customize-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #ebeaea;
+  }
+  .sstt-checkbox{
+    display: flex;
+    align-items: center; 
+  }
+  .sstt-checkbox label{
+    margin-right: 10px;
+  }
+  /* Title */
+  #title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form elements container */
+  .main {
+    margin-bottom: 20px;
+  }
+  
+  /* Label styles */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Input styles */
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Checkbox styles */
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  /* Submit button styles */
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Optional: Style the form headings */
+  h3 {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  
+  

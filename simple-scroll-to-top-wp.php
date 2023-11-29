@@ -28,6 +28,12 @@ function sstt_enqueue_style()
 }
 add_action("wp_enqueue_scripts", "sstt_enqueue_style");
 
+function sstt_add_theme_css(){
+  wp_enqueue_style( 'sstt-admin-style', plugins_url( 'css/sstt-admin-style.css', __FILE__ ), false, "1.0.0");
+
+}
+add_action('admin_enqueue_scripts', 'sstt_add_theme_css');
+
 // Including JavaScript
 function sstt_enqueue_scripts()
 {
@@ -79,11 +85,12 @@ function sstt_create_page()
 
       <!-- New Display Settings -->
       <h3>Display Settings:</h3>
-      <div>
+      <div class="main main-display-settings"> 
+      <div class="sstt-checkbox">
         <label for="sstt-enabled">Enabled</label>
         <input type="checkbox" name="sstt-enabled" <?php checked(get_option('sstt-enabled'), 1); ?>>
     </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-javascript-async">Javascript Async</label>
         <input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async')); ?>>
       </div>
@@ -111,7 +118,7 @@ function sstt_create_page()
         <label for="sstt-scroll-duration">Scroll Duration:</label>
         <input type="number" name="sstt-scroll-duration" value="<?php echo esc_attr(get_option("sstt-scroll-duration", 400)); ?>" placeholder="ms">
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-auto-hide">Auto Hide:</label>
         <input type="checkbox" name="sstt-auto-hide" <?php checked(get_option('sstt-auto-hide')); ?>>
       </div>
@@ -119,7 +126,7 @@ function sstt_create_page()
         <label for="sstt-auto-hide-after">Auto Hide After:</label>
         <input type="number" name="sstt-auto-hide-after" value="<?php echo esc_attr(get_option("sstt-auto-hide-after", 2)); ?>" placeholder="sec">
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-small-devices">Hide on Small Devices:</label>
         <input type="checkbox" name="sstt-hide-small-devices" <?php checked(get_option('sstt-hide-small-devices')); ?>>
       </div>
@@ -127,7 +134,7 @@ function sstt_create_page()
         <label for="sstt-small-device-max-width">Small Device Max Width:</label>
         <input type="number" name="sstt-small-device-max-width" value="<?php echo esc_attr(get_option("sstt-small-device-max-width", 640)); ?>" placeholder="px">
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-small-window">Hide on Small Window:</label>
         <input type="checkbox" name="sstt-hide-small-window" <?php checked(get_option('sstt-hide-small-window')); ?>>
       </div>
@@ -135,11 +142,11 @@ function sstt_create_page()
         <label for="sstt-small-window-max-width">Small Window Max Width:</label>
         <input type="number" name="sstt-small-window-max-width" value="<?php echo esc_attr(get_option("sstt-small-window-max-width", 640)); ?>" placeholder="px">
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-wp-admin">Hide on WP-ADMIN:</label>
         <input type="checkbox" name="sstt-hide-wp-admin" <?php checked(get_option('sstt-hide-wp-admin')); ?>>
-      </div>
-      <div>
+      </div class="sstt-checkbox">
+      <div class="sstt-checkbox">
         <label for="sstt-hide-iframes">Hide on iframes:</label>
         <input type="checkbox" name="sstt-hide-iframes" <?php checked(get_option('sstt-hide-iframes')); ?>>
       </div>
@@ -147,33 +154,34 @@ function sstt_create_page()
 
 
       <!-- new2 --> 
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-javascript-async">Javascript Async</label>
         <input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async'), 1); ?>>
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-auto-hide">Auto Hide:</label>
         <input type="checkbox" name="sstt-auto-hide" <?php checked(get_option('sstt-auto-hide'), 1); ?>>
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-small-devices">Hide on Small Devices:</label>
         <input type="checkbox" name="sstt-hide-small-devices" <?php checked(get_option('sstt-hide-small-devices'), 1); ?>>
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-small-window">Hide on Small Window:</label>
         <input type="checkbox" name="sstt-hide-small-window" <?php checked(get_option('sstt-hide-small-window'), 1); ?>>
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-wp-admin">Hide on WP-ADMIN:</label>
         <input type="checkbox" name="sstt-hide-wp-admin" <?php checked(get_option('sstt-hide-wp-admin'), 1); ?>>
       </div>
-      <div>
+      <div class="sstt-checkbox">
         <label for="sstt-hide-iframes">Hide on iframes:</label>
         <input type="checkbox" name="sstt-hide-iframes" <?php checked(get_option('sstt-hide-iframes'), 1); ?>>
       </div>
-
+      </div>
       <!-- Location Settings -->
       <h3>Location Settings:</h3>
+      <div class="main main-location-settings"> 
       <div>
         <label for="sstt-location">Location:</label>
         <select name="sstt-location">
@@ -191,10 +199,10 @@ function sstt_create_page()
         <label for="sstt-margin-y">Margin Y:</label>
         <input type="number" name="sstt-margin-y" value="<?php echo esc_attr(get_option("sstt-margin-y", 20)); ?>" placeholder="px">
       </div>
-
+      </div>
       <!-- Filter Settings -->
       <h3>Filter Settings:</h3>
-      <div>
+      <div class="main main-filter-settings">
         <label for="sstt-display-on-pages">Display on Pages:</label>
         <input type="text" name="sstt-display-on-pages" value="<?php echo esc_attr(get_option("sstt-display-on-pages")); ?>" placeholder="Page IDs (comma-separated)">
       </div>
@@ -261,7 +269,8 @@ add_action('admin_init', 'sstt_register_settings');
 function sstt_scroll_control()
 {
 ?>
-  <style>
+  <style> 
+
     #scrollUp {
       background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
       border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
