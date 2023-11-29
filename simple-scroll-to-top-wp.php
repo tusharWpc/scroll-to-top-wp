@@ -64,8 +64,8 @@ function sstt_create_page()
             <label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label>
             <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
 
-            <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label>
-            <input type="text" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
+            <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label> 
+            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
 
             <?php submit_button(); ?>
         </form>
@@ -81,15 +81,15 @@ function sstt_register_settings()
 add_action('admin_init', 'sstt_register_settings');
 
 // Theme CSS Customization
-function sstt_theme_color_cus()
+function sstt_scroll_control()
 {
 ?>
     <style>
         #scrollUp {
-            background-color: <?php echo get_option("sstt-primary-color", '#000000'); ?>;
-            border-radius: <?php echo get_option("sstt-rounded-corner", '5px'); ?>;
+            background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
+            border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
         }
     </style>
 <?php
 }
-add_action('wp_head', 'sstt_theme_color_cus');
+add_action("wp_head", "sstt_scroll_control");
