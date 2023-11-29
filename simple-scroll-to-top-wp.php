@@ -70,8 +70,7 @@ function sstt_create_page()
 
       <label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label>
       <select name="sstt-alignment">
-        <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option>
-        <option value="center" <?php selected(get_option('sstt-alignment'), 'center'); ?>>Center</option>
+        <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option> 
         <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>>Right</option>
       </select>
 
@@ -101,10 +100,11 @@ function sstt_scroll_control()
     #scrollUp {
       background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
       border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
-      text-align: <?php echo get_option("sstt-alignment", "right"); ?>;
+      position: fixed;
+      <?php $alignment = get_option("sstt-alignment", "right"); ?>
+      <?php echo $alignment ? $alignment . ": 0;" : ""; ?>
     }
   </style>
-
 <?php
 }
 add_action("wp_head", "sstt_scroll_control");
