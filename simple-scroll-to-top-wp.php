@@ -67,11 +67,11 @@ function sstt_create_page()
     <form method="post" action="options.php">
       <?php settings_fields('sstt_settings_group'); ?>
       <?php do_settings_sections('sstt-settings'); ?>
-      <div class="sstt-color">
+      <div class="sstt-input">
         <label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label>
         <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
       </div>
-      <div class="sstt-rounded">
+      <div class="sstt-input">
         <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label>
         <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
       </div>
@@ -86,67 +86,67 @@ function sstt_create_page()
       <!-- New Display Settings -->
       <h3>Display Settings:</h3>
       <div class="main main-display-settings"> 
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-enabled">Enabled</label>
         <input type="checkbox" name="sstt-enabled" <?php checked(get_option('sstt-enabled'), 1); ?>>
     </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-javascript-async">Javascript Async</label>
         <input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async')); ?>>
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-scroll-offset">Scroll Offset:</label>
         <input type="number" name="sstt-scroll-offset" value="<?php echo esc_attr(get_option("sstt-scroll-offset", 100)); ?>" placeholder="px">
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-button-size-width">Button Size Width:</label>
         <input type="number" name="sstt-button-size-width" value="<?php echo esc_attr(get_option("sstt-button-size-width", 0)); ?>" placeholder="px">
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-button-size-height">Button Size Height:</label>
         <input type="number" name="sstt-button-size-height" value="<?php echo esc_attr(get_option("sstt-button-size-height", 0)); ?>" placeholder="px">
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-button-opacity">Button Opacity:</label>
         <input type="number" name="sstt-button-opacity" value="<?php echo esc_attr(get_option("sstt-button-opacity", 80)); ?>" placeholder="%">
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-button-fade-duration">Button Fade Duration:</label>
         <input type="number" name="sstt-button-fade-duration" value="<?php echo esc_attr(get_option("sstt-button-fade-duration", 0)); ?>" placeholder="ms">
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-scroll-duration">Scroll Duration:</label>
         <input type="number" name="sstt-scroll-duration" value="<?php echo esc_attr(get_option("sstt-scroll-duration", 400)); ?>" placeholder="ms">
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-auto-hide">Auto Hide:</label>
         <input type="checkbox" name="sstt-auto-hide" <?php checked(get_option('sstt-auto-hide')); ?>>
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-auto-hide-after">Auto Hide After:</label>
         <input type="number" name="sstt-auto-hide-after" value="<?php echo esc_attr(get_option("sstt-auto-hide-after", 2)); ?>" placeholder="sec">
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-small-devices">Hide on Small Devices:</label>
         <input type="checkbox" name="sstt-hide-small-devices" <?php checked(get_option('sstt-hide-small-devices')); ?>>
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-small-device-max-width">Small Device Max Width:</label>
         <input type="number" name="sstt-small-device-max-width" value="<?php echo esc_attr(get_option("sstt-small-device-max-width", 640)); ?>" placeholder="px">
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-small-window">Hide on Small Window:</label>
         <input type="checkbox" name="sstt-hide-small-window" <?php checked(get_option('sstt-hide-small-window')); ?>>
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-small-window-max-width">Small Window Max Width:</label>
         <input type="number" name="sstt-small-window-max-width" value="<?php echo esc_attr(get_option("sstt-small-window-max-width", 640)); ?>" placeholder="px">
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-wp-admin">Hide on WP-ADMIN:</label>
         <input type="checkbox" name="sstt-hide-wp-admin" <?php checked(get_option('sstt-hide-wp-admin')); ?>>
-      </div class="sstt-checkbox">
-      <div class="sstt-checkbox">
+      </div class="sstt-input">
+      <div class="sstt-input">
         <label for="sstt-hide-iframes">Hide on iframes:</label>
         <input type="checkbox" name="sstt-hide-iframes" <?php checked(get_option('sstt-hide-iframes')); ?>>
       </div>
@@ -154,27 +154,27 @@ function sstt_create_page()
 
 
       <!-- new2 --> 
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-javascript-async">Javascript Async</label>
         <input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async'), 1); ?>>
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-auto-hide">Auto Hide:</label>
         <input type="checkbox" name="sstt-auto-hide" <?php checked(get_option('sstt-auto-hide'), 1); ?>>
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-small-devices">Hide on Small Devices:</label>
         <input type="checkbox" name="sstt-hide-small-devices" <?php checked(get_option('sstt-hide-small-devices'), 1); ?>>
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-small-window">Hide on Small Window:</label>
         <input type="checkbox" name="sstt-hide-small-window" <?php checked(get_option('sstt-hide-small-window'), 1); ?>>
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-wp-admin">Hide on WP-ADMIN:</label>
         <input type="checkbox" name="sstt-hide-wp-admin" <?php checked(get_option('sstt-hide-wp-admin'), 1); ?>>
       </div>
-      <div class="sstt-checkbox">
+      <div class="sstt-input">
         <label for="sstt-hide-iframes">Hide on iframes:</label>
         <input type="checkbox" name="sstt-hide-iframes" <?php checked(get_option('sstt-hide-iframes'), 1); ?>>
       </div>
@@ -182,7 +182,7 @@ function sstt_create_page()
       <!-- Location Settings -->
       <h3>Location Settings:</h3>
       <div class="main main-location-settings"> 
-      <div>
+      <div class="sstt-input">
         <label for="sstt-location">Location:</label>
         <select name="sstt-location">
           <option value="bottom-right" <?php selected(get_option('sstt-location'), 'bottom-right'); ?>>Bottom Right</option>
@@ -191,11 +191,11 @@ function sstt_create_page()
           <option value="top-left" <?php selected(get_option('sstt-location'), 'top-left'); ?>>Top Left</option>
         </select>
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-margin-x">Margin X:</label>
         <input type="number" name="sstt-margin-x" value="<?php echo esc_attr(get_option("sstt-margin-x", 20)); ?>" placeholder="px">
       </div>
-      <div>
+      <div class="sstt-input">
         <label for="sstt-margin-y">Margin Y:</label>
         <input type="number" name="sstt-margin-y" value="<?php echo esc_attr(get_option("sstt-margin-y", 20)); ?>" placeholder="px">
       </div>
@@ -269,14 +269,15 @@ add_action('admin_init', 'sstt_register_settings');
 function sstt_scroll_control()
 {
 ?>
-  <style> 
-
+  <style>
     #scrollUp {
-      background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
-      border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
+      background-color: <?php echo esc_attr(get_option("sstt-primary-color", "#000000")); ?>;
+      border-radius: <?php echo esc_attr(get_option("sstt-rounded-corner", "5")); ?>px;
       position: fixed;
-      <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
+      <?php $alignment = esc_attr(get_option("sstt-alignment", "right")); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
     }
+
+    /* Add more dynamic styles based on your settings */
   </style>
 <?php
 }

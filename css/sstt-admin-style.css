@@ -1,70 +1,97 @@
-div{
-    margin-top: 5px;
+/* Margin for all div elements */
+div {
+    margin-top: 10px;
 }
 
 /* Main form container */
 .sstt-customize-form {
     max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #ebeaea;
-  }
-  .sstt-checkbox{
+    margin: 30px auto;
+    padding: 30px;
+    border: 2px solid #3498db;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox container */
+.sstt-input {
     display: flex;
-    align-items: center; 
-  }
-  .sstt-checkbox label{
-    margin-right: 10px;
-  }
-  /* Title */
-  #title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  /* Form elements container */
-  .main {
-    margin-bottom: 20px;
-  }
-  
-  /* Label styles */
-  label {
+    align-items: center;
+}
+
+/* Checkbox label styles */
+.sstt-input label {
+    margin-right: 15px;
+    font-weight: normal;
+    color: #555;
+}
+
+/* Title styles */
+#title {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Form elements container */
+.main {
+    margin-bottom: 30px;
+}
+
+/* Label styles */
+label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  /* Input styles */
-  input[type="text"],
-  input[type="number"],
-  select {
-    width: 100%;
-    padding: 8px;
     margin-bottom: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+/* Input styles */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
     box-sizing: border-box;
-  }
-  
-  /* Checkbox styles */
-  input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  /* Submit button styles */
-  input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Input styles with custom width and padding */
+input[type="text"],
+input[type="number"] {
+    width: 65px;
+    padding: 0 6px;
+    display: flex; 
+}
+
+/* Checkbox styles */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Submit button styles */
+input[type="submit"] {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 15px 25px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-  }
-  
-  /* Optional: Style the form headings */
-  h3 {
     font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+input[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+/* Form headings styles */
+h3 {
+    font-size: 24px;
     margin-top: 20px;
-  }
-  
-  
-  
+    color: #444;
+}
