@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Simple Scroll To Top WP
  * Plugin URI: https://wordpress.org/plugins/simple-scroll-to-top-wp/
@@ -16,22 +17,22 @@
 
 function sstt_add_theme_page()
 {
-    add_menu_page('Scroll To Top', 'Scroll To Top', 'manage_options', 'sstt-plugin-option', 'sstt_create_page', 'dashicons-arrow-up-alt', 101);
+  add_menu_page('Scroll To Top', 'Scroll To Top', 'manage_options', 'sstt-plugin-option', 'sstt_create_page', 'dashicons-arrow-up-alt', 101);
 }
 add_action('admin_menu', 'sstt_add_theme_page');
 
 // Including CSS
 function sstt_enqueue_style()
 {
-    wp_enqueue_style('sstt-style', plugins_url('css/sstt-style.css', __FILE__));
+  wp_enqueue_style('sstt-style', plugins_url('css/sstt-style.css', __FILE__));
 }
 add_action("wp_enqueue_scripts", "sstt_enqueue_style");
 
 // Including JavaScript
 function sstt_enqueue_scripts()
 {
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('sstt-plugin-script', plugins_url('js/sstt-plugin.js', __FILE__), array(), '1.0.0', true);
+  wp_enqueue_script('jquery');
+  wp_enqueue_script('sstt-plugin-script', plugins_url('js/sstt-plugin.js', __FILE__), array(), '1.0.0', true);
 }
 add_action("wp_enqueue_scripts", "sstt_enqueue_scripts");
 
@@ -39,11 +40,11 @@ add_action("wp_enqueue_scripts", "sstt_enqueue_scripts");
 function sstt_scroll_script()
 {
 ?>
-    <script>
-        jQuery(document).ready(function () {
-            jQuery.scrollUp();
-        });
-    </script>
+  <script>
+    jQuery(document).ready(function() {
+      jQuery.scrollUp();
+    });
+  </script>
 <?php
 }
 add_action("wp_footer", "sstt_scroll_script");
@@ -54,42 +55,56 @@ add_action("wp_footer", "sstt_scroll_script");
 function sstt_create_page()
 {
 ?>
-    <div class="sstt-customize-form">
-        <h3 id="title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
+  <div class="sstt-customize-form">
+    <h3 id="title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
 
-        <form method="post" action="options.php">
-            <?php settings_fields('sstt_settings_group'); ?>
-            <?php do_settings_sections('sstt-settings'); ?>
+    <form method="post" action="options.php">
+      <?php settings_fields('sstt_settings_group'); ?>
+      <?php do_settings_sections('sstt-settings'); ?>
 
-            <label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label>
-            <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
+      <label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label>
+      <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
 
-            <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label> 
-            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
+      <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label>
+      <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
 
-            <?php submit_button(); ?>
-        </form>
-    </div>
+      <label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label>
+      <select name="sstt-alignment">
+        <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option>
+        <option value="center" <?php selected(get_option('sstt-alignment'), 'center'); ?>>Center</option>
+        <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>>Right</option>
+      </select>
+
+      <?php submit_button(); ?>
+    </form>
+
+  </div>
 <?php
 }
 
 function sstt_register_settings()
 {
-    register_setting('sstt_settings_group', 'sstt-primary-color');
-    register_setting('sstt_settings_group', 'sstt-rounded-corner');
+  register_setting('sstt_settings_group', 'sstt-primary-color');
+  register_setting('sstt_settings_group', 'sstt-rounded-corner');
+  register_setting('sstt_settings_group', 'sstt-alignment', array(
+    'default' => 'right', // Default alignment is right
+  ));
 }
+
 add_action('admin_init', 'sstt_register_settings');
 
 // Theme CSS Customization
 function sstt_scroll_control()
 {
 ?>
-    <style>
-        #scrollUp {
-            background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
-            border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
-        }
-    </style>
+  <style>
+    #scrollUp {
+      background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
+      border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
+      text-align: <?php echo get_option("sstt-alignment", "right"); ?>;
+    }
+  </style>
+
 <?php
 }
 add_action("wp_head", "sstt_scroll_control");
