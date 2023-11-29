@@ -61,19 +61,21 @@ function sstt_create_page()
     <form method="post" action="options.php">
       <?php settings_fields('sstt_settings_group'); ?>
       <?php do_settings_sections('sstt-settings'); ?>
-
-      <label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label>
-      <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
-
-      <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label>
-      <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
-
-      <label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label>
-      <select name="sstt-alignment">
-        <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option> 
-        <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>>Right</option>
-      </select>
-
+      <div class="sstt-color">
+        <label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label>
+        <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
+      </div>
+      <div class="sstt-rounded">
+        <label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label>
+        <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>">
+      </div>
+      <div class="sstt-align">
+        <label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label>
+        <select name="sstt-alignment">
+          <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option>
+          <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>>Right</option>
+        </select>
+      </div>
       <?php submit_button(); ?>
     </form>
 
@@ -83,6 +85,7 @@ function sstt_create_page()
 
 function sstt_register_settings()
 {
+  
   register_setting('sstt_settings_group', 'sstt-primary-color');
   register_setting('sstt_settings_group', 'sstt-rounded-corner');
   register_setting('sstt_settings_group', 'sstt-alignment', array(
@@ -101,8 +104,7 @@ function sstt_scroll_control()
       background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
       border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
       position: fixed;
-      <?php $alignment = get_option("sstt-alignment", "right"); ?>
-      <?php echo $alignment ? $alignment . ": 0;" : ""; ?>
+      <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
     }
   </style>
 <?php
