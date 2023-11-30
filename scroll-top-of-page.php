@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Scroll Top Of Page
  * Plugin URI: https://wordpress.org/plugins/scroll-top-of-page/
@@ -43,7 +44,7 @@ add_action("wp_enqueue_scripts", "sstt_enqueue_scripts");
 // jQuery Plugin Setting Activation
 function sstt_scroll_script()
 {
-    ?>
+?>
     <script>
         jQuery(document).ready(function($) {
             var scrollUpIcon = $("#scrollUp");
@@ -59,7 +60,7 @@ function sstt_scroll_script()
             });
         });
     </script>
-    <?php
+<?php
 }
 add_action("wp_footer", "sstt_scroll_script");
 
@@ -68,7 +69,7 @@ add_action("wp_footer", "sstt_scroll_script");
  */
 function sstt_create_page()
 {
-    ?>
+?>
     <div class="sstt-customize-form">
         <h3 id="sstt-title"><?php echo esc_html__("Settings", "sstt"); ?></h3>
         <form method="post" action="options.php">
@@ -85,16 +86,21 @@ function sstt_create_page()
                         </td>
                     </tr>
                     <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-margin"><?php echo esc_html__("Margin:", "sstt"); ?></label></th>
+                        <th class="sstt-th">
+                            <label for="sstt-margin">
+                                <?php echo esc_html__("Margin:", "sstt"); ?> 
+                            </label>
+                        </th>
                         <td>
-                            <input type="number" name="sstt-margin" value="<?php echo esc_attr(get_option("sstt-margin", 5)); ?>"  placeholder="px">
+                            <input type="number" name="sstt-margin" value="<?php echo esc_attr(get_option("sstt-margin")); ?>" placeholder="px">
                         </td>
                     </tr>
+
                     <!-- Rounded Corner -->
                     <tr class="sstt-tr">
                         <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html__("Rounded Corner:", "sstt"); ?></label></th>
                         <td>
-                            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner", 5)); ?>" placeholder="px">
+                            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>" placeholder="px">
                         </td>
                     </tr>
 
@@ -114,7 +120,7 @@ function sstt_create_page()
             <?php submit_button(); ?>
         </form>
     </div>
-    <?php
+<?php
 }
 
 // ... (rest of the code remains unchanged)
@@ -126,7 +132,7 @@ function sstt_register_settings()
     register_setting("sstt_settings_group", "sstt-rounded-corner");
     register_setting("sstt_settings_group", "sstt-alignment", array(
         "default" => "right", // Default alignment is right
-    )); 
+    ));
     // Continue with the remaining settings in the same format
 }
 
@@ -145,17 +151,17 @@ add_action("admin_init", "sstt_register_settings");
 // Theme CSS Customization
 function sstt_scroll_control()
 {
-    ?>
+?>
     <style>
         #scrollUp {
-            background-color: <?php echo esc_attr(get_option("sstt-primary-color", "#FF7F50")); ?>;
-            margin: <?php echo esc_attr(get_option("sstt-margin", "5")); ?>px;
-            border-radius: <?php echo esc_attr(get_option("sstt-rounded-corner", "5")); ?>px;
+            background-color: <?php echo esc_attr(get_option("sstt-primary-color", "#ff7f50")); ?>;
+            margin: <?php echo esc_attr(get_option("sstt-margin")); ?>px;
+            border-radius: <?php echo esc_attr(get_option("sstt-rounded-corner")); ?>px;
             position: fixed;
             <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? esc_attr($alignment) . ": 0;" : ""; ?>
         }
     </style>
-    <?php
+<?php
 }
 add_action("wp_head", "sstt_scroll_control");
 ?>
