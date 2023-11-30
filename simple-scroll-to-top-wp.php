@@ -62,13 +62,13 @@ function sstt_create_page()
 {
 ?>
 <div class="sstt-customize-form">
-    <h3 id="title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
+    <h3 id="sstt-title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
 
     <form method="post" action="options.php">
         <?php settings_fields('sstt_settings_group'); ?>
         <?php do_settings_sections('sstt-settings'); ?>
 
-        <table>
+        <table class="sstt-table">
             <tbody>
 
                 <tr>
@@ -76,11 +76,11 @@ function sstt_create_page()
                     <td><input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>"></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label></th>
-                    <td><input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>"></td>
+                    <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?>"></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label></th>
+                    <th class="sstt-th"><label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label></th>
                     <td>
                         <select name="sstt-alignment">
                             <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option>
@@ -91,26 +91,95 @@ function sstt_create_page()
 
                 <!-- New Display Settings -->
                 <tr>
-                    <th><label for="sstt-enabled">Enabled</label></th>
+                    <th class="sstt-th"><label for="sstt-enabled">Enabled</label></th>
                     <td><input type="checkbox" name="sstt-enabled" <?php checked(get_option('sstt-enabled'), 1); ?>></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-javascript-async">Javascript Async</label></th>
+                    <th class="sstt-th"><label for="sstt-javascript-async">Javascript Async</label></th>
                     <td><input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async')); ?>></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-scroll-offset">Scroll Offset:</label></th>
-                    <td><input type="number" name="sstt-scroll-offset" value="<?php echo esc_attr(get_option("sstt-scroll-offset", 100)); ?>" placeholder="px"></td>
+                    <th class="sstt-th"><label for="sstt-scroll-offset">Scroll Offset:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-scroll-offset" value="<?php echo esc_attr(get_option("sstt-scroll-offset", 100)); ?>" placeholder="px"></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-button-size-width">Button Size Width:</label></th>
-                    <td><input type="number" name="sstt-button-size-width" value="<?php echo esc_attr(get_option("sstt-button-size-width", 0)); ?>" placeholder="px"></td>
+                    <th class="sstt-th"><label for="sstt-button-size-width">Button Size Width:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-button-size-width" value="<?php echo esc_attr(get_option("sstt-button-size-width", 0)); ?>" placeholder="px"></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-button-size-height">Button Size Height:</label></th>
-                    <td><input type="number" name="sstt-button-size-height" value="<?php echo esc_attr(get_option("sstt-button-size-height", 0)); ?>" placeholder="px"></td>
+                    <th class="sstt-th"><label for="sstt-button-size-height">Button Size Height:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-button-size-height" value="<?php echo esc_attr(get_option("sstt-button-size-height", 0)); ?>" placeholder="px"></td>
                 </tr>
-                <!-- Add the rest of the display settings similarly -->
+                <tr>
+                    <th class="sstt-th"><label for="sstt-button-opacity">Button Opacity:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-button-opacity" value="<?php echo esc_attr(get_option("sstt-button-opacity", 80)); ?>" placeholder="%"></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-button-fade-duration">Button Fade Duration:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-button-fade-duration" value="<?php echo esc_attr(get_option("sstt-button-fade-duration", 0)); ?>" placeholder="ms"></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-scroll-duration">Scroll Duration:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-scroll-duration" value="<?php echo esc_attr(get_option("sstt-scroll-duration", 400)); ?>" placeholder="ms"></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-auto-hide">Auto Hide:</label></th>
+                    <td><input type="checkbox" name="sstt-auto-hide" <?php checked(get_option('sstt-auto-hide'), 1); ?>></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-auto-hide-after">Auto Hide After:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-auto-hide-after" value="<?php echo esc_attr(get_option("sstt-auto-hide-after", 2)); ?>" placeholder="sec"></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-hide-small-devices">Hide on Small Devices:</label></th>
+                    <td><input type="checkbox" name="sstt-hide-small-devices" <?php checked(get_option('sstt-hide-small-devices'), 1); ?>></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-small-device-max-width">Small Device Max Width:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-small-device-max-width" value="<?php echo esc_attr(get_option("sstt-small-device-max-width", 640)); ?>" placeholder="px"></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-hide-small-window">Hide on Small Window:</label></th>
+                    <td><input type="checkbox" name="sstt-hide-small-window" <?php checked(get_option('sstt-hide-small-window'), 1); ?>></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-small-window-max-width">Small Window Max Width:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-small-window-max-width" value="<?php echo esc_attr(get_option("sstt-small-window-max-width", 640)); ?>" placeholder="px"></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-hide-wp-admin">Hide on WP-ADMIN:</label></th>
+                    <td><input type="checkbox" name="sstt-hide-wp-admin" <?php checked(get_option('sstt-hide-wp-admin'), 1); ?>></td>
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-hide-iframes">Hide on iframes:</label></th>
+                    <td><input type="checkbox" name="sstt-hide-iframes" <?php checked(get_option('sstt-hide-iframes'), 1); ?>></td>
+                </tr>
+
+                <!-- Button Style -->
+                <tr>
+                    <th class="sstt-th"><label for="sstt-button-style">Button Style:</label></th>
+                    <td>
+                        <select name="sstt-button-style">
+                            <option value="image" <?php selected(get_option('sstt-button-style'), 'image'); ?>>Image Button</option>
+                            <option value="text" <?php selected(get_option('sstt-button-style'), 'text'); ?>>Text Button</option>
+                            <option value="font-awesome" <?php selected(get_option('sstt-button-style'), 'font-awesome'); ?>>Font Awesome Button</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Button Action -->
+
+                </tr>
+                <tr>
+                    <th class="sstt-th"><label for="sstt-button-action">Button Action:</label></th>
+                    <td>
+                        <select name="sstt-button-action">
+                            <option value="scroll-top" <?php selected(get_option('sstt-button-action'), 'scroll-top'); ?>>Scroll to Top</option>
+                            <option value="scroll-element" <?php selected(get_option('sstt-button-action'), 'scroll-element'); ?>>Scroll to Element</option>
+                            <option value="link-page" <?php selected(get_option('sstt-button-action'), 'link-page'); ?>>Link to Page</option>
+                        </select>
+                    </td>
+                </tr>
             </tbody>
         </table>
 
@@ -119,7 +188,7 @@ function sstt_create_page()
         <table>
             <tbody>
                 <tr>
-                    <th><label for="sstt-location">Location:</label></th>
+                    <th class="sstt-th"><label for="sstt-location">Location:</label></th>
                     <td>
                         <select name="sstt-location">
                             <option value="bottom-right" <?php selected(get_option('sstt-location'), 'bottom-right'); ?>>Bottom Right</option>
@@ -130,12 +199,12 @@ function sstt_create_page()
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-margin-x">Margin X:</label></th>
-                    <td><input type="number" name="sstt-margin-x" value="<?php echo esc_attr(get_option("sstt-margin-x", 20)); ?>" placeholder="px"></td>
+                    <th class="sstt-th"><label for="sstt-margin-x">Margin X:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-margin-x" value="<?php echo esc_attr(get_option("sstt-margin-x", 20)); ?>" placeholder="px"></td>
                 </tr>
                 <tr>
-                    <th><label for="sstt-margin-y">Margin Y:</label></th>
-                    <td><input type="number" name="sstt-margin-y" value="<?php echo esc_attr(get_option("sstt-margin-y", 20)); ?>" placeholder="px"></td>
+                    <th class="sstt-th"><label for="sstt-margin-y">Margin Y:</label></th>
+                    <td><input class="sstt-number" type="number" name="sstt-margin-y" value="<?php echo esc_attr(get_option("sstt-margin-y", 20)); ?>" placeholder="px"></td>
                 </tr>
             </tbody>
         </table>
@@ -145,8 +214,8 @@ function sstt_create_page()
         <table>
             <tbody>
                 <tr>
-                    <th><label for="sstt-display-on-pages">Display on Pages:</label></th>
-                    <td><input type="text" name="sstt-display-on-pages" value="<?php echo esc_attr(get_option("sstt-display-on-pages")); ?>" placeholder="Page IDs (comma-separated)"></td>
+                    <th class="sstt-th"><label for="sstt-display-on-pages">Display on Pages:</label></th>
+                    <td><input class="sstt-" type="text" name="sstt-display-on-pages" value="<?php echo esc_attr(get_option("sstt-display-on-pages")); ?>" placeholder="Page IDs (comma-separated)"></td>
                 </tr>
             </tbody>
         </table>
@@ -184,6 +253,10 @@ function sstt_register_settings()
   register_setting('sstt_settings_group', 'sstt-hide-wp-admin');
   register_setting('sstt_settings_group', 'sstt-hide-iframes');
 
+  // Button Style and Action
+  register_setting('sstt_settings_group', 'sstt-button-style');
+  register_setting('sstt_settings_group', 'sstt-button-action');
+
   // Location Settings
   register_setting('sstt_settings_group', 'sstt-location');
   register_setting('sstt_settings_group', 'sstt-margin-x');
@@ -191,16 +264,6 @@ function sstt_register_settings()
 
   // Filter Settings
   register_setting('sstt_settings_group', 'sstt-display-on-pages');
-
-
-  // newLe
-  register_setting('sstt_settings_group', 'sstt-enabled', 'sanitize_checkbox');
-  register_setting('sstt_settings_group', 'sstt-javascript-async', 'sanitize_checkbox');
-  register_setting('sstt_settings_group', 'sstt-auto-hide', 'sanitize_checkbox');
-  register_setting('sstt_settings_group', 'sstt-hide-small-devices', 'sanitize_checkbox');
-  register_setting('sstt_settings_group', 'sstt-hide-small-window', 'sanitize_checkbox');
-  register_setting('sstt_settings_group', 'sstt-hide-wp-admin', 'sanitize_checkbox');
-  register_setting('sstt_settings_group', 'sstt-hide-iframes', 'sanitize_checkbox');
 }
 
 function sanitize_checkbox($input)
