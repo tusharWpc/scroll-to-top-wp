@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Scroll Top WP
+ * Plugin Name: Scroll to Top WP
  * Plugin URI: https://wordpress.org/plugins/scroll-top-wp/
  * Description: Simple Scroll to Top plugin will help you to enable Back to Top button on your WordPress website.
  * Version: 1.0.0
@@ -44,13 +44,23 @@ add_action("wp_enqueue_scripts", "sstt_enqueue_scripts");
 // jQuery Plugin Setting Activation
 function sstt_scroll_script()
 {
-?>
+    ?>
     <script>
-        jQuery(document).ready(function() {
-            jQuery.scrollUp();
+        jQuery(document).ready(function($) {
+            var scrollUpIcon = $('#scrollUp');
+
+            // Initial visibility based on checkbox state
+            scrollUpIcon.toggle(<?php echo get_option('sstt-enabled') ? 'true' : 'false'; ?>);
+
+            $.scrollUp();
+
+            // Toggle visibility when checkbox is clicked
+            $('[name="sstt-enabled"]').on('change', function() {
+                scrollUpIcon.toggle(this.checked);
+            });
         });
     </script>
-<?php
+    <?php
 }
 add_action("wp_footer", "sstt_scroll_script");
 
@@ -59,9 +69,9 @@ add_action("wp_footer", "sstt_scroll_script");
  */
 function sstt_create_page()
 {
-?>
+    ?>
     <div class="sstt-customize-form">
-        <h3 id="sstt-title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
+        <h3 id="sstt-title"><?php echo esc_html('Settings'); ?></h3>
         <form method="post" action="options.php">
             <?php settings_fields('sstt_settings_group'); ?>
             <?php do_settings_sections('sstt-settings'); ?>
@@ -73,6 +83,12 @@ function sstt_create_page()
                         <th class="sstt-th"><label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label></th>
                         <td>
                             <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
+                        </td>
+                    </tr>
+                    <tr class="sstt-tr">
+                        <th class="sstt-th"><label for="sstt-margin"><?php echo esc_html("Margin:"); ?></label></th>
+                        <td>
+                            <input type="number" name="sstt-margin" value="<?php echo esc_attr(get_option("sstt-margin")); ?>"  placeholder="px">
                         </td>
                     </tr>
                     <!-- Rounded Corner -->
@@ -96,36 +112,12 @@ function sstt_create_page()
                 </tbody>
             </table>
 
-            <!-- Display Settings -->
-            <h3 id="sstt-title"><?php echo esc_html('Display Settings:'); ?></h3>
-            <table>
-                <tbody>
-                    <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-enabled">Enabled</label></th>
-                        <td>
-                            <input type="checkbox" name="sstt-enabled" <?php checked(get_option('sstt-enabled'), 1); ?>>
-                        </td>
-                    </tr>
-                    <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-javascript-async">Javascript Async</label></th>
-                        <td>
-                            <input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async')); ?>>
-                        </td>
-                    </tr>
-                    <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-scroll-offset">Scroll Offset:</label></th>
-                        <td>
-                            <input type="number" name="sstt-scroll-offset" value="<?php echo esc_attr(get_option("sstt-scroll-offset", 100)); ?>" placeholder="px">
-                        </td>
-                    </tr>
-                    <!-- Continue with the remaining settings in the same format -->
-                </tbody>
-            </table>
+    
 
             <?php submit_button(); ?>
         </form>
     </div>
-<?php
+    <?php
 }
 
 // ... (rest of the code remains unchanged)
@@ -133,15 +125,13 @@ function sstt_create_page()
 function sstt_register_settings()
 {
     register_setting('sstt_settings_group', 'sstt-primary-color');
+    register_setting('sstt_settings_group', 'sstt-margin');
     register_setting('sstt_settings_group', 'sstt-rounded-corner');
     register_setting('sstt_settings_group', 'sstt-alignment', array(
         'default' => 'right', // Default alignment is right
     ));
 
-    // New Display Settings
-    register_setting('sstt_settings_group', 'sstt-enabled', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-javascript-async', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-scroll-offset', 'sanitize_scroll_offset');
+ 
 
     // Continue with the remaining settings in the same format
 }
@@ -161,15 +151,17 @@ add_action('admin_init', 'sstt_register_settings');
 // Theme CSS Customization
 function sstt_scroll_control()
 {
-?>
+    ?>
     <style>
         #scrollUp {
             background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
+            margin: <?php echo get_option("sstt-margin", "5"); ?>px;
             border-radius: <?php echo get_option("sstt-rounded-corner", "1"); ?>px;
             position: fixed;
             <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
         }
     </style>
-<?php
+    <?php
 }
 add_action("wp_head", "sstt_scroll_control");
+?>

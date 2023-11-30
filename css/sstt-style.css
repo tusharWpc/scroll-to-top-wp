@@ -1,7 +1,6 @@
 /* Image style */
 #scrollUp {
-    background-image: url("../img/top.png");
-    background-color: black;
+    background-image: url("../img/top.png"); 
     bottom: 5px;
     right: 5px;
     width: 38px;    /* Width of image */
