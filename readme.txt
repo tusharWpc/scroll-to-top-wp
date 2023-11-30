@@ -1,11 +1,11 @@
 ﻿=== Scroll To Top WP===
 Contributors: nftushar
-Donate link: 
+Donate link: coming doon
 Author URI: https://www.nftushar.com/
-Plugin URI: https://wordpress.org/plugins/simple-scroll-top-wp/
+Plugin URI: https://wordpress.org/plugins/scroll-to-top-wp/
 Tags: Simple Scroll To Top, Scroll To Top, Back to Top button, Back to Top.
 Requires at least: 5.2
-Tested up to: 6.1.1
+Tested up to: 6.3
 Stable tag: 5.2.2
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,10 +15,9 @@ Simple Scroll to top plugin will help you to enable Back to Top button to your W
 == Description ==
 Simple Scroll to top plugin will help you to enable Back to Top button to your WordPress website.
 
-Plugin Documentation: [https://wordpress.org/plugins/simple-scroll-top-wp/](https://wordpress.org/plugins/simple-scroll-top-wp/)
+Plugin Documentation: [https://wordpress.org/plugins/scroll-to-top-wp/](https://wordpress.org/plugins/scroll-to-top-wp/)
 
-*   [Live Demo](https://www.nftushar.com/blog/simple-scroll-top-wp/)	
-*   [Need Help?](https://www.nftushar.com/contact/)		
+*   [Live Demo](https://www.nftushar.com/blog/scroll-to-top-wp/)	 
 *   [About Author](https://github.com/nftushar)
 
 == Video Tutorial ==
@@ -29,11 +28,11 @@ Include Soon!
 *   Unlimited colors.  
 
 
-You can make my day by submitting a positive review on <a href="https://wordpress.org/plugins/simple-scroll-top-wp/" target="_blank"><strong>WordPress.org!</strong></a></p>
+You can make my day by submitting a positive review on <a href="https://wordpress.org/plugins/scroll-to-top-wp/" target="_blank"><strong>WordPress.org!</strong></a></p>
 
-= Usage =
+= Usage instruction =
 
-* Go to your Dashboard after installation and navigate to "Appearance > Customize > Scroll To Top" to configure the accordion.
+* Go to your Dashboard after installation and navigate to the bottom of the dashboard menu Name "Scroll To Top >"  to configure the accordion.
 
 = Features =
 
@@ -42,7 +41,7 @@ You can make my day by submitting a positive review on <a href="https://wordpres
 
 
 == Installation ==
-1. Upload `simple-scroll-top-wp` to the `/wp-content/plugins/` directory
+1. Upload `scroll-to-top-wp` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 
