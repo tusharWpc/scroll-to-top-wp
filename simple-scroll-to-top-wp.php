@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Scroll to Top WP
  * Plugin URI: https://wordpress.org/plugins/scroll-top-wp/
- * Description: Simple Scroll to Top plugin will help you to enable Back to Top button on your WordPress website.
+ * Description: Simple Scroll to Top plugin for enabling a Back to Top button on your WordPress website.
  * Version: 1.0.0
  * Requires at least: 5.2
  * Requires PHP: 7.2
@@ -10,7 +10,6 @@
  * Author URI: https://nftushar.code.blog/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI: https://github.com/nftushar
  * Text Domain: sstt
  */
 
@@ -71,7 +70,7 @@ function sstt_create_page()
 {
     ?>
     <div class="sstt-customize-form">
-        <h3 id="sstt-title"><?php echo esc_html('Settings'); ?></h3>
+        <h3 id="sstt-title"><?php echo esc_html__('Settings', 'sstt'); ?></h3>
         <form method="post" action="options.php">
             <?php settings_fields('sstt_settings_group'); ?>
             <?php do_settings_sections('sstt-settings'); ?>
@@ -80,20 +79,20 @@ function sstt_create_page()
                 <tbody>
                     <!-- Button Color -->
                     <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label></th>
+                        <th class="sstt-th"><label for="sstt-primary-color"><?php echo esc_html__("Button Color:", 'sstt'); ?></label></th>
                         <td>
                             <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
                         </td>
                     </tr>
                     <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-margin"><?php echo esc_html("Margin:"); ?></label></th>
+                        <th class="sstt-th"><label for="sstt-margin"><?php echo esc_html__("Margin:", 'sstt'); ?></label></th>
                         <td>
                             <input type="number" name="sstt-margin" value="<?php echo esc_attr(get_option("sstt-margin")); ?>"  placeholder="px">
                         </td>
                     </tr>
                     <!-- Rounded Corner -->
                     <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label></th>
+                        <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html__("Rounded Corner:", 'sstt'); ?></label></th>
                         <td>
                             <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner", 1)); ?>" placeholder="px">
                         </td>
@@ -101,18 +100,16 @@ function sstt_create_page()
 
                     <!-- Alignment -->
                     <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label></th>
+                        <th class="sstt-th"><label for="sstt-alignment"><?php echo esc_html__("Alignment:", 'sstt'); ?></label></th>
                         <td>
                             <select name="sstt-alignment">
-                                <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option>
-                                <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>>Right</option>
+                                <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>><?php echo esc_html__('Left', 'sstt'); ?></option>
+                                <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>><?php echo esc_html__('Right', 'sstt'); ?></option>
                             </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-    
 
             <?php submit_button(); ?>
         </form>
@@ -129,10 +126,7 @@ function sstt_register_settings()
     register_setting('sstt_settings_group', 'sstt-rounded-corner');
     register_setting('sstt_settings_group', 'sstt-alignment', array(
         'default' => 'right', // Default alignment is right
-    ));
-
- 
-
+    )); 
     // Continue with the remaining settings in the same format
 }
 
@@ -154,11 +148,11 @@ function sstt_scroll_control()
     ?>
     <style>
         #scrollUp {
-            background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
-            margin: <?php echo get_option("sstt-margin", "5"); ?>px;
-            border-radius: <?php echo get_option("sstt-rounded-corner", "1"); ?>px;
+            background-color: <?php echo esc_attr(get_option("sstt-primary-color", "#000000")); ?>;
+            margin: <?php echo esc_attr(get_option("sstt-margin", "5")); ?>px;
+            border-radius: <?php echo esc_attr(get_option("sstt-rounded-corner", "1")); ?>px;
             position: fixed;
-            <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
+            <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? esc_attr($alignment) . ": 0;" : ""; ?>
         }
     </style>
     <?php
