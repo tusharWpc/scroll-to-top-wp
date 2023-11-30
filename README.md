@@ -1,1 +1,1 @@
-#  scroll-to-top-wp
+#  scroll-top-of-page

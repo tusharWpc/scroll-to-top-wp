@@ -1,4 +1,4 @@
-.stw-customize-form {
+.sstt-customize-form {
     max-width: 600px;
     margin: 30px auto;
     padding: 30px;
@@ -8,11 +8,11 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.stw-customize-form div {
+.sstt-customize-form div {
     margin-top: 10px;
 }
 
-.stw-customize-form label {
+.sstt-customize-form label {
     font-size: 16px;
     font-weight: bold;
     display: block;
@@ -20,18 +20,18 @@
     color: #666;
 }
 
-.stw-customize-form .stw-input {
+.sstt-customize-form .sstt-input {
     display: flex;
     justify-content: space-between;
 }
 
-#stw-title {
+#sstt-title {
     font-size: 32px;
     margin-bottom: 30px;
     color: #333;
 }
 
-.stw-customize-form input[type="color"] {
+.sstt-customize-form input[type="color"] {
     width: 20%;
     padding: 0;
     margin-bottom: 15px;
@@ -40,50 +40,50 @@
     border-radius: 5px;
 }
 
-.stw-customize-form input[type="text"],
-.stw-customize-form input[type="number"] {
+.sstt-customize-form input[type="text"],
+.sstt-customize-form input[type="number"] {
     width: 20%;
     padding: 0 6px;
     display: flex;
 }
 
-.stw-customize-form .text-input-pageid {
+.sstt-customize-form .text-input-pageid {
     width: 62%;
     padding: 0 6px;
     display: flex;
 }
 
-.stw-customize-form input[type="checkbox"] {
+.sstt-customize-form input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.stw-customize-form input[type="submit"]:hover {
+.sstt-customize-form input[type="submit"]:hover {
     background-color: #c0392b;
 }
 
-.stw-customize-form h3 {
+.sstt-customize-form h3 {
     font-size: 24px;
     margin-top: 20px;
     color: #444;
 }
 
-.stw-customize-form table {
+.sstt-customize-form table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.stw-customize-form .stw-th,
-.stw-customize-form td {
+.sstt-customize-form .sstt-th,
+.sstt-customize-form td {
     padding: 10px;
     border: 1px solid #ccc;
     text-align: left;
 }
 
-.form-table .stw-th {
-    width: 50%;
+.form-table .sstt-th { 
+    width: 50%; 
 }
 
-.stw-customize-form .stw-th {
+.sstt-customize-form .sstt-th {
     background-color: #f2f2f2;
 }
