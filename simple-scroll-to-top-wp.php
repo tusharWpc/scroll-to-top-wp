@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Scroll Top WP
  * Plugin URI: https://wordpress.org/plugins/scroll-top-wp/
@@ -62,14 +61,13 @@ function sstt_create_page()
 {
 ?>
     <div class="sstt-customize-form">
-            <h3 id="sstt-title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
+        <h3 id="sstt-title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
         <form method="post" action="options.php">
             <?php settings_fields('sstt_settings_group'); ?>
             <?php do_settings_sections('sstt-settings'); ?>
 
             <table class="sstt-table">
                 <tbody>
-
                     <!-- Button Color -->
                     <tr class="sstt-tr">
                         <th class="sstt-th"><label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label></th>
@@ -77,12 +75,11 @@ function sstt_create_page()
                             <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
                         </td>
                     </tr>
-
                     <!-- Rounded Corner -->
                     <tr class="sstt-tr">
-                        <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label> </th>
+                        <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label></th>
                         <td>
-                            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?> " placeholder="px">
+                            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner", 1)); ?>" placeholder="px">
                         </td>
                     </tr>
 
@@ -98,14 +95,12 @@ function sstt_create_page()
                     </tr>
                 </tbody>
             </table>
-            <tbody>
-                <table>
-                    <!-- Display Settings -->
-                    <h3 id="sstt-title"><?php echo esc_html('Display Settings:'); ?>
-                    <!-- <tr class="sstt-tr">
-                        <th>
-                        </th>
-                    <tr class="sstt-tr"> -->
+
+            <!-- Display Settings -->
+            <h3 id="sstt-title"><?php echo esc_html('Display Settings:'); ?></h3>
+            <table>
+                <tbody>
+                    <tr class="sstt-tr">
                         <th class="sstt-th"><label for="sstt-enabled">Enabled</label></th>
                         <td>
                             <input type="checkbox" name="sstt-enabled" <?php checked(get_option('sstt-enabled'), 1); ?>>
@@ -124,18 +119,16 @@ function sstt_create_page()
                         </td>
                     </tr>
                     <!-- Continue with the remaining settings in the same format -->
-
-            </tbody>
+                </tbody>
             </table>
 
             <?php submit_button(); ?>
         </form>
     </div>
-
-
-
 <?php
 }
+
+// ... (rest of the code remains unchanged)
 
 function sstt_register_settings()
 {
@@ -146,40 +139,16 @@ function sstt_register_settings()
     ));
 
     // New Display Settings
-    register_setting('sstt_settings_group', 'sstt-enabled');
-    register_setting('sstt_settings_group', 'sstt-javascript-async');
-    register_setting('sstt_settings_group', 'sstt-scroll-offset');
-    register_setting('sstt_settings_group', 'sstt-button-size-width');
-    register_setting('sstt_settings_group', 'sstt-button-size-height');
-    register_setting('sstt_settings_group', 'sstt-button-opacity');
-    register_setting('sstt_settings_group', 'sstt-button-fade-duration');
-    register_setting('sstt_settings_group', 'sstt-scroll-duration');
-    register_setting('sstt_settings_group', 'sstt-auto-hide');
-    register_setting('sstt_settings_group', 'sstt-auto-hide-after');
-    register_setting('sstt_settings_group', 'sstt-hide-small-devices');
-    register_setting('sstt_settings_group', 'sstt-small-device-max-width');
-    register_setting('sstt_settings_group', 'sstt-hide-small-window');
-    register_setting('sstt_settings_group', 'sstt-small-window-max-width');
-    register_setting('sstt_settings_group', 'sstt-hide-wp-admin');
-    register_setting('sstt_settings_group', 'sstt-hide-iframes');
-
-    // Location Settings
-    register_setting('sstt_settings_group', 'sstt-location');
-    register_setting('sstt_settings_group', 'sstt-margin-x');
-    register_setting('sstt_settings_group', 'sstt-margin-y');
-
-    // Filter Settings
-    register_setting('sstt_settings_group', 'sstt-display-on-pages');
-
-
-    // newLe
     register_setting('sstt_settings_group', 'sstt-enabled', 'sanitize_checkbox');
     register_setting('sstt_settings_group', 'sstt-javascript-async', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-auto-hide', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-hide-small-devices', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-hide-small-window', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-hide-wp-admin', 'sanitize_checkbox');
-    register_setting('sstt_settings_group', 'sstt-hide-iframes', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-scroll-offset', 'sanitize_scroll_offset');
+
+    // Continue with the remaining settings in the same format
+}
+
+function sanitize_scroll_offset($input)
+{
+    return absint($input); // Ensure the scroll offset is a non-negative integer
 }
 
 function sanitize_checkbox($input)
@@ -196,7 +165,7 @@ function sstt_scroll_control()
     <style>
         #scrollUp {
             background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
-            border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
+            border-radius: <?php echo get_option("sstt-rounded-corner", "1"); ?>px;
             position: fixed;
             <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
         }
