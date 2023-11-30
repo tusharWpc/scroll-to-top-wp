@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Plugin Name: Simple Scroll To Top WP
- * Plugin URI: https://wordpress.org/plugins/simple-scroll-to-top-wp/
+ * Plugin Name: Scroll Top WP
+ * Plugin URI: https://wordpress.org/plugins/scroll-top-wp/
  * Description: Simple Scroll to Top plugin will help you to enable Back to Top button on your WordPress website.
  * Version: 1.0.0
  * Requires at least: 5.2
  * Requires PHP: 7.2
  * Author: MD Nafish Fuad Tushar
- * Author URI: https://nftushar.com/
+ * Author URI: https://nftushar.code.blog/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Update URI: https://github.com/nftushar
@@ -61,207 +61,125 @@ add_action("wp_footer", "sstt_scroll_script");
 function sstt_create_page()
 {
 ?>
-    <div class="custom-scroll-form">
-        <h3 class="form-title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
-
+    <div class="sstt-customize-form">
+            <h3 id="sstt-title"><?php echo esc_html('Scroll To Top Page Customize'); ?></h3>
         <form method="post" action="options.php">
-        <?php settings_fields('custom-scroll-settings'); ?>
-            <?php do_settings_sections('sstt-plugin-option'); ?>
+            <?php settings_fields('sstt_settings_group'); ?>
+            <?php do_settings_sections('sstt-settings'); ?>
 
-            <table class="form-table">
+            <table class="sstt-table">
                 <tbody>
 
-                    <tr class="form-row">
-                        <th><label for="custom-primary-color"><?php echo esc_html("Button Color:"); ?></label></th>
-                        <td><input type="color" name="custom-primary-color" value="<?php echo esc_attr(get_option("custom-primary-color")); ?>"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label></th>
-                        <td><input class="number-input" type="number" name="custom-rounded-corner" value="<?php echo esc_attr(get_option("custom-rounded-corner")); ?>"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-alignment"><?php echo esc_html("Alignment:"); ?></label></th>
+                    <!-- Button Color -->
+                    <tr class="sstt-tr">
+                        <th class="sstt-th"><label for="sstt-primary-color"><?php echo esc_html("Button Color:"); ?></label></th>
                         <td>
-                            <select name="custom-alignment">
-                                <option value="left" <?php selected(get_option('custom-alignment'), 'left'); ?>>Left</option>
-                                <option value="right" <?php selected(get_option('custom-alignment'), 'right'); ?>>Right</option>
-                            </select>
+                            <input type="color" name="sstt-primary-color" value="<?php echo esc_attr(get_option("sstt-primary-color")); ?>">
                         </td>
                     </tr>
 
-                    <!-- New Display Settings -->
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-enabled">Enabled</label></th>
-                        <td><input type="checkbox" name="custom-enabled" <?php checked(get_option('custom-enabled'), 1); ?>></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-javascript-async">Javascript Async</label></th>
-                        <td><input type="checkbox" name="custom-javascript-async" <?php checked(get_option('custom-javascript-async')); ?>></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-scroll-offset">Scroll Offset:</label></th>
-                        <td><input class="number-input" type="number" name="custom-scroll-offset" value="<?php echo esc_attr(get_option("custom-scroll-offset", 100)); ?>" placeholder="px"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-button-size-width">Button Size Width:</label></th>
-                        <td><input class="number-input" type="number" name="custom-button-size-width" value="<?php echo esc_attr(get_option("custom-button-size-width", 0)); ?>" placeholder="px"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-button-size-height">Button Size Height:</label></th>
-                        <td><input class="number-input" type="number" name="custom-button-size-height" value="<?php echo esc_attr(get_option("custom-button-size-height", 0)); ?>" placeholder="px"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-button-opacity">Button Opacity:</label></th>
-                        <td><input class="number-input" type="number" name="custom-button-opacity" value="<?php echo esc_attr(get_option("custom-button-opacity", 80)); ?>" placeholder="%"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-button-fade-duration">Button Fade Duration:</label></th>
-                        <td><input class="number-input" type="number" name="custom-button-fade-duration" value="<?php echo esc_attr(get_option("custom-button-fade-duration", 0)); ?>" placeholder="ms"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-scroll-duration">Scroll Duration:</label></th>
-                        <td><input class="number-input" type="number" name="custom-scroll-duration" value="<?php echo esc_attr(get_option("custom-scroll-duration", 400)); ?>" placeholder="ms"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-auto-hide">Auto Hide:</label></th>
-                        <td><input type="checkbox" name="custom-auto-hide" <?php checked(get_option('custom-auto-hide'), 1); ?>></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-auto-hide-after">Auto Hide After:</label></th>
-                        <td><input class="number-input" type="number" name="custom-auto-hide-after" value="<?php echo esc_attr(get_option("custom-auto-hide-after", 2)); ?>" placeholder="sec"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-hide-small-devices">Hide on Small Devices:</label></th>
-                        <td><input type="checkbox" name="custom-hide-small-devices" <?php checked(get_option('custom-hide-small-devices'), 1); ?>></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-small-device-max-width">Small Device Max Width:</label></th>
-                        <td><input class="number-input" type="number" name="custom-small-device-max-width" value="<?php echo esc_attr(get_option("custom-small-device-max-width", 640)); ?>" placeholder="px"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-hide-small-window">Hide on Small Window:</label></th>
-                        <td><input type="checkbox" name="custom-hide-small-window" <?php checked(get_option('custom-hide-small-window'), 1); ?>></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-small-window-max-width">Small Window Max Width:</label></th>
-                        <td><input class="number-input" type="number" name="custom-small-window-max-width" value="<?php echo esc_attr(get_option("custom-small-window-max-width", 640)); ?>" placeholder="px"></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-hide-wp-admin">Hide on WP-ADMIN:</label></th>
-                        <td><input type="checkbox" name="custom-hide-wp-admin" <?php checked(get_option('custom-hide-wp-admin'), 1); ?>></td>
-                    </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-hide-iframes">Hide on iframes:</label></th>
-                        <td><input type="checkbox" name="custom-hide-iframes" <?php checked(get_option('custom-hide-iframes'), 1); ?>></td>
-                    </tr>
-
-                    <!-- Button Style -->
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-button-style">Button Style:</label></th>
+                    <!-- Rounded Corner -->
+                    <tr class="sstt-tr">
+                        <th class="sstt-th"><label for="sstt-rounded-corner"><?php echo esc_html("Rounded Corner:"); ?></label> </th>
                         <td>
-                            <select name="custom-button-style">
-                            <option value="image" <?php selected(get_option('custom-button-style'), 'image'); ?>>Image Button</option> 
-                                <option value="text" <?php selected(get_option('custom-button-style'), 'text'); ?>>Text Button</option>
-                                <option value="font-awesome" <?php selected(get_option('custom-button-style'), 'font-awesome'); ?>>Font Awesome Button</option>
-                            </select>
+                            <input type="number" name="sstt-rounded-corner" value="<?php echo esc_attr(get_option("sstt-rounded-corner")); ?> " placeholder="px">
                         </td>
                     </tr>
 
-                    <!-- Button Action -->
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-button-action">Button Action:</label></th>
+                    <!-- Alignment -->
+                    <tr class="sstt-tr">
+                        <th class="sstt-th"><label for="sstt-alignment"><?php echo esc_html("Alignment:"); ?></label></th>
                         <td>
-                            <select name="custom-button-action">
-                                <option value="scroll-top" <?php selected(get_option('custom-button-action'), 'scroll-top'); ?>>Scroll to Top</option>
-                                <option value="scroll-element" <?php selected(get_option('custom-button-action'), 'scroll-element'); ?>>Scroll to Element</option>
-                                <option value="link-page" <?php selected(get_option('custom-button-action'), 'link-page'); ?>>Link to Page</option>
+                            <select name="sstt-alignment">
+                                <option value="left" <?php selected(get_option('sstt-alignment'), 'left'); ?>>Left</option>
+                                <option value="right" <?php selected(get_option('sstt-alignment'), 'right'); ?>>Right</option>
                             </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <!-- Location Settings -->
-            <h3>Location Settings:</h3>
-            <table class="location-table">
-                <tbody>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-location">Location:</label></th>
+            <tbody>
+                <table>
+                    <!-- Display Settings -->
+                    <h3 id="sstt-title"><?php echo esc_html('Display Settings:'); ?>
+                    <!-- <tr class="sstt-tr">
+                        <th>
+                        </th>
+                    <tr class="sstt-tr"> -->
+                        <th class="sstt-th"><label for="sstt-enabled">Enabled</label></th>
                         <td>
-                            <select name="custom-location">
-                                <option value="bottom-right" <?php selected(get_option('custom-location'), 'bottom-right'); ?>>Bottom Right</option>
-                                <option value="bottom-left" <?php selected(get_option('custom-location'), 'bottom-left'); ?>>Bottom Left</option>
-                                <option value="top-right" <?php selected(get_option('custom-location'), 'top-right'); ?>>Top Right</option>
-                                <option value="top-left" <?php selected(get_option('custom-location'), 'top-left'); ?>>Top Left</option>
-                            </select>
+                            <input type="checkbox" name="sstt-enabled" <?php checked(get_option('sstt-enabled'), 1); ?>>
                         </td>
                     </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-margin-x">Margin X:</label></th>
-                        <td><input class="number-input" type="number" name="custom-margin-x" value="<?php echo esc_attr(get_option("custom-margin-x", 20)); ?>" placeholder="px"></td>
+                    <tr class="sstt-tr">
+                        <th class="sstt-th"><label for="sstt-javascript-async">Javascript Async</label></th>
+                        <td>
+                            <input type="checkbox" name="sstt-javascript-async" <?php checked(get_option('sstt-javascript-async')); ?>>
+                        </td>
                     </tr>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-margin-y">Margin Y:</label></th>
-                        <td><input class="number-input" type="number" name="custom-margin-y" value="<?php echo esc_attr(get_option("custom-margin-y", 20)); ?>" placeholder="px"></td>
+                    <tr class="sstt-tr">
+                        <th class="sstt-th"><label for="sstt-scroll-offset">Scroll Offset:</label></th>
+                        <td>
+                            <input type="number" name="sstt-scroll-offset" value="<?php echo esc_attr(get_option("sstt-scroll-offset", 100)); ?>" placeholder="px">
+                        </td>
                     </tr>
-                </tbody>
-            </table>
+                    <!-- Continue with the remaining settings in the same format -->
 
-            <!-- Filter Settings -->
-            <h3>Filter Settings:</h3>
-            <table class="filter-table">
-                <tbody>
-                    <tr class="form-row">
-                        <th class="form-th"><label for="custom-display-on-pages">Display on Pages:</label></th>
-                        <td><input id="text-input-pageid" class="text-input " type="text" name="custom-display-on-pages" value="<?php echo esc_attr(get_option("custom-display-on-pages")); ?>" placeholder="Page IDs (comma-separated)"></td>
-                    </tr>
-                </tbody>
+            </tbody>
             </table>
 
             <?php submit_button(); ?>
         </form>
     </div>
+
+
+
 <?php
 }
 
 function sstt_register_settings()
 {
-    register_setting('custom-scroll-settings', 'custom-primary-color');
-    register_setting('custom-scroll-settings', 'custom-rounded-corner');
-    register_setting('custom-scroll-settings', 'custom-alignment', array(
+    register_setting('sstt_settings_group', 'sstt-primary-color');
+    register_setting('sstt_settings_group', 'sstt-rounded-corner');
+    register_setting('sstt_settings_group', 'sstt-alignment', array(
         'default' => 'right', // Default alignment is right
     ));
 
     // New Display Settings
-    register_setting('custom-scroll-settings', 'custom-enabled');
-    register_setting('custom-scroll-settings', 'custom-javascript-async');
-    register_setting('custom-scroll-settings', 'custom-scroll-offset');
-    register_setting('custom-scroll-settings', 'custom-button-size-width');
-    register_setting('custom-scroll-settings', 'custom-button-size-height');
-    register_setting('custom-scroll-settings', 'custom-button-opacity');
-    register_setting('custom-scroll-settings', 'custom-button-fade-duration');
-    register_setting('custom-scroll-settings', 'custom-scroll-duration');
-    register_setting('custom-scroll-settings', 'custom-auto-hide');
-    register_setting('custom-scroll-settings', 'custom-auto-hide-after');
-    register_setting('custom-scroll-settings', 'custom-hide-small-devices');
-    register_setting('custom-scroll-settings', 'custom-small-device-max-width');
-    register_setting('custom-scroll-settings', 'custom-hide-small-window');
-    register_setting('custom-scroll-settings', 'custom-small-window-max-width');
-    register_setting('custom-scroll-settings', 'custom-hide-wp-admin');
-    register_setting('custom-scroll-settings', 'custom-hide-iframes');
-
-    // Button Style and Action
-   register_setting('custom-scroll-settings', 'custom-button-style');
-   register_setting('custom-scroll-settings', 'custom-button-action');
-
+    register_setting('sstt_settings_group', 'sstt-enabled');
+    register_setting('sstt_settings_group', 'sstt-javascript-async');
+    register_setting('sstt_settings_group', 'sstt-scroll-offset');
+    register_setting('sstt_settings_group', 'sstt-button-size-width');
+    register_setting('sstt_settings_group', 'sstt-button-size-height');
+    register_setting('sstt_settings_group', 'sstt-button-opacity');
+    register_setting('sstt_settings_group', 'sstt-button-fade-duration');
+    register_setting('sstt_settings_group', 'sstt-scroll-duration');
+    register_setting('sstt_settings_group', 'sstt-auto-hide');
+    register_setting('sstt_settings_group', 'sstt-auto-hide-after');
+    register_setting('sstt_settings_group', 'sstt-hide-small-devices');
+    register_setting('sstt_settings_group', 'sstt-small-device-max-width');
+    register_setting('sstt_settings_group', 'sstt-hide-small-window');
+    register_setting('sstt_settings_group', 'sstt-small-window-max-width');
+    register_setting('sstt_settings_group', 'sstt-hide-wp-admin');
+    register_setting('sstt_settings_group', 'sstt-hide-iframes');
 
     // Location Settings
-    register_setting('custom-scroll-settings', 'sstt-location');
-    register_setting('custom-scroll-settings', 'sstt-margin-x');
-    register_setting('custom-scroll-settings', 'sstt-margin-y');
+    register_setting('sstt_settings_group', 'sstt-location');
+    register_setting('sstt_settings_group', 'sstt-margin-x');
+    register_setting('sstt_settings_group', 'sstt-margin-y');
 
     // Filter Settings
-    register_setting('custom-scroll-settings', 'sstt-display-on-pages');
+    register_setting('sstt_settings_group', 'sstt-display-on-pages');
+
+
+    // newLe
+    register_setting('sstt_settings_group', 'sstt-enabled', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-javascript-async', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-auto-hide', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-hide-small-devices', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-hide-small-window', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-hide-wp-admin', 'sanitize_checkbox');
+    register_setting('sstt_settings_group', 'sstt-hide-iframes', 'sanitize_checkbox');
 }
 
 function sanitize_checkbox($input)
@@ -277,13 +195,11 @@ function sstt_scroll_control()
 ?>
     <style>
         #scrollUp {
-            background-color: <?php echo esc_attr(get_option("sstt-primary-color", "#000000")); ?>;
-            border-radius: <?php echo esc_attr(get_option("sstt-rounded-corner", "5")); ?>px;
+            background-color: <?php echo get_option("sstt-primary-color", "#000000"); ?>;
+            border-radius: <?php echo get_option("sstt-rounded-corner", "5"); ?>px;
             position: fixed;
-            <?php $alignment = esc_attr(get_option("sstt-alignment", "right")); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
+            <?php $alignment = get_option("sstt-alignment", "right"); ?><?php echo $alignment ? $alignment . ": 0;" : ""; ?>
         }
-
-        /* Add more dynamic styles based on your settings */
     </style>
 <?php
 }

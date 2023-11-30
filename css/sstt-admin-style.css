@@ -1,94 +1,95 @@
-/* Main form container */
-.custom-scroll-form {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 30px;
-    border: 2px solid #3498db;
-    background-color: #f9f9f9;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
+    /* Main form container */
+    .sstt-customize-form {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 30px;
+        border: 2px solid #3498db;
+        background-color: #f9f9f9;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
 
-/* Rest of the styles with the unique class */
-.custom-scroll-form div {
-    margin-top: 10px;
-}
+    /* Rest of the styles with the unique class */
+    .sstt-customize-form div {
+        margin-top: 10px;
+    }
 
-.custom-scroll-form label {
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-    color: #666;
-}
+    .sstt-customize-form label {
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        color: #666;
+    }
 
-.custom-scroll-form .sstt-input {
-    display: flex;
-    justify-content: space-between;
-}
+    .sstt-customize-form .sstt-input {
+        display: flex;
+        justify-content: space-between;
+    }
 
-#sstt-title {
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: #333;
-}
+    #sstt-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+    }
 
-.custom-scroll-form .main {
-    margin-bottom: 30px;
-}
+    .sstt-customize-form .main {
+        margin-bottom: 30px;
+    }
 
-.custom-scroll-form input[type="color"] {
-    width: 20%;
-    padding: 0px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    .sstt-customize-form input[type="color"] {
+        width: 20%;
+        padding: 0px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
-.custom-scroll-form input[type="text"],
-.custom-scroll-form input[type="number"] {
-    width: 65px;
-    padding: 0 6px;
-    display: flex;
-}
+    .sstt-customize-form input[type="text"],
+    .sstt-customize-form input[type="number"] {
+        width: 20%;
+        padding: 0 6px;
+        display: flex;
+    }
 
-.custom-scroll-form #text-input-pageid{
-    width: 62%;
-    padding: 0 6px;
-    display: flex;
-}
+    .sstt-customize-form .text-input-pageid{
+        width: 62%;
+        padding: 0 6px;
+        display: flex;
+    }
 
-.custom-scroll-form input[type="checkbox"] {
-    margin-right: 10px;
-}
+    .sstt-customize-form input[type="checkbox"] {
+        margin-right: 10px;
+    }
 
- 
-.custom-scroll-form input[type="submit"]:hover {
-    background-color: #c0392b;
-}
+    .sstt-customize-form input[type="submit"]:hover {
+        background-color: #c0392b;
+    }
 
-.custom-scroll-form h3 {
-    font-size: 24px;
-    margin-top: 20px;
-    color: #444;
-}
+    .sstt-customize-form h3 {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #444;
+    }
 
-.custom-scroll-form table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
+    .sstt-customize-form table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
 
-.custom-scroll-form th,
-.custom-scroll-form td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
-.form-table th { 
-    width: 50%; 
-}
-.custom-scroll-form th {
-    background-color: #f2f2f2;
-}
+    .sstt-customize-form .sstt-th,
+    .sstt-customize-form td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    .form-table .sstt-th { 
+        width: 50%; 
+    }
+
+    .sstt-customize-form .sstt-th {
+        background-color: #f2f2f2;
+    }
