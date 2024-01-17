@@ -6,7 +6,7 @@ Plugin URI: https://wordpress.org/plugins/scroll-top-of-page/
 Tags: Scroll Top of Page, Scroll WordPress, Back to Top button, bottom to Top.
 Requires at least: 5.2
 Tested up to: 6.4
-Stable tag: 5.2.2
+Stable tag: 1.0.0
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
